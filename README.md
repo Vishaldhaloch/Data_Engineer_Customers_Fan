@@ -70,16 +70,17 @@ psql -h $PGHOST -U $PGUSER -d $PGDATABASE -f sql/01_mart_views.sql
 python -m venv .venv
 # Windows
 .venv\Scripts\activate
+
 pip install -r requirements.txt
 
 
 # 5. Run ETL
 
 # Fetch customers from API → landing → core
-python etl/fetch_customers.py
+python -m etl/fetch_customers.py
 
 # Load orders from XML → landing → core; rejects → core.load_rejects
-python etl/load_orders.py
+python -m etl/load_orders.py
 
 
 # 6. Run FastAPI
