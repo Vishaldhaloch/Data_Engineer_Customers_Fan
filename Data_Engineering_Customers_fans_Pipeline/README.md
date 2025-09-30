@@ -47,7 +47,7 @@ sudo -u postgres psql -c "CREATE DATABASE customers_fans OWNER devuser;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE customers_fans TO devuser;"
 
 
-2. Environment Variables
+# 2. Environment Variables
 
 Set for ETL & API:
 
@@ -127,3 +127,4 @@ uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
 
 
 Test API endpoints or run api_test_client.py.
+
