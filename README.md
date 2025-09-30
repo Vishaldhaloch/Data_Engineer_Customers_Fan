@@ -43,18 +43,24 @@ Install PostgreSQL and create DB + user:
 
 # Create user & database
 sudo -u postgres psql -c "CREATE USER devuser WITH PASSWORD 'devpass';"
+
 sudo -u postgres psql -c "CREATE DATABASE customers_fans OWNER devuser;"
+
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE customers_fans TO devuser;"
 
 
 # 2. Environment Variables
 
-Set for ETL & API:
+# Set for ETL & API:
 
 export PGHOST=localhost
+
 export PGPORT=5432
+
 export PGUSER=devuser
+
 export PGPASSWORD='devpass'
+
 export PGDATABASE=customers_fans
 
 (On Windows, use set instead of export.)
