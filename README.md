@@ -1,9 +1,9 @@
-Customers→Fans Pipeline
-Overview
+# Customers→Fans Pipeline
+# Overview
 
 This project implements a data pipeline for loading customer and order data, calculating fan scores, and exposing the results via a FastAPI read-only API.
 
-Key Features:
+# Key Features:
 
 Fetch customers via paged API calls → cleaned → loaded into core.customer.
 
@@ -17,7 +17,7 @@ FastAPI endpoints with filtering, pagination, and structured responses.
 
 ETL is idempotent: safe to rerun without duplicating records.
 
-Repository Structure
+# Repository Structure
 
 customers-fans-pipeline/
 ├─ api/
@@ -36,7 +36,7 @@ customers-fans-pipeline/
 └─ README.md                 # Project documentation
 
 
-⚙️ Setup Instructions
+# Setup Instructions
 1. PostgreSQL
 
 Install PostgreSQL and create DB + user:
@@ -47,7 +47,7 @@ sudo -u postgres psql -c "CREATE DATABASE customers_fans OWNER devuser;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE customers_fans TO devuser;"
 
 
-2. Environment Variables
+# 2. Environment Variables
 
 Set for ETL & API:
 
@@ -59,13 +59,13 @@ export PGDATABASE=customers_fans
 
 (On Windows, use set instead of export.)
 
-3. Create Schemas, Tables & Views
+# 3. Create Schemas, Tables & Views
 
 psql -h $PGHOST -U $PGUSER -d $PGDATABASE -f sql/00_create_schemas_and_tables.sql
 psql -h $PGHOST -U $PGUSER -d $PGDATABASE -f sql/01_mart_views.sql
 
 
-4. Python Environment
+# 4. Python Environment
 
 python -m venv .venv
 # Windows
@@ -73,7 +73,7 @@ python -m venv .venv
 pip install -r requirements.txt
 
 
-5. Run ETL
+# 5. Run ETL
 
 # Fetch customers from API → landing → core
 python etl/fetch_customers.py
@@ -82,12 +82,12 @@ python etl/fetch_customers.py
 python etl/load_orders.py
 
 
-6. Run FastAPI
+# 6. Run FastAPI
 
 uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
 
 
-🔗 API Endpoints
+# 🔗 API Endpoints
 
 Endpoint	Description
 /health	Health check
@@ -98,7 +98,7 @@ Endpoint	Description
 /orders	List orders (filters: customer_id, from_ts, to_ts, activity_type)
 
 
-7. Instructions for Reviewer:
+# 7. Instructions for Reviewer:
 
 Clone the repository.
 
@@ -106,14 +106,14 @@ Set PostgreSQL environment variables: PGHOST, PGPORT, PGUSER, PGPASSWORD, PGDATA
 
 Run SQL scripts in order: 00_create_schemas_and_tables.sql → 01_mart_views.sql.
 
-8. Activate virtual environment and install dependencies:
+# 8. Activate virtual environment and install dependencies:
 
 python -m venv .venv
 .venv\Scripts\activate       # Windows
 pip install -r requirements.txt
 
 
-9. Run ETL scripts:
+# 9. Run ETL scripts:
 
 
 python -m etl.fetch_customers
@@ -121,7 +121,7 @@ python -m etl/load_orders.py
 
 
 
-Start FastAPI server:
+# Start FastAPI server:
 
 uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
 
