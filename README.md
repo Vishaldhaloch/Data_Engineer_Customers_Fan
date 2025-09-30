@@ -68,13 +68,16 @@ export PGDATABASE=customers_fans
 # 3. Create Schemas, Tables & Views
 
 psql -h $PGHOST -U $PGUSER -d $PGDATABASE -f sql/00_create_schemas_and_tables.sql
+
 psql -h $PGHOST -U $PGUSER -d $PGDATABASE -f sql/01_mart_views.sql
 
 
 # 4. Python Environment
 
 python -m venv .venv
+
 # Windows
+
 .venv\Scripts\activate
 
 pip install -r requirements.txt
@@ -83,9 +86,11 @@ pip install -r requirements.txt
 # 5. Run ETL
 
 # Fetch customers from API → landing → core
+
 python -m etl/fetch_customers.py
 
 # Load orders from XML → landing → core; rejects → core.load_rejects
+
 python -m etl/load_orders.py
 
 
