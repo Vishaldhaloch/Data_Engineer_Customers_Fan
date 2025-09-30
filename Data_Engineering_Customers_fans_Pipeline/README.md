@@ -98,7 +98,7 @@ Endpoint	Description
 /orders	List orders (filters: customer_id, from_ts, to_ts, activity_type)
 
 
-Instructions for Reviewer:
+7. Instructions for Reviewer:
 
 Clone the repository.
 
@@ -106,14 +106,14 @@ Set PostgreSQL environment variables: PGHOST, PGPORT, PGUSER, PGPASSWORD, PGDATA
 
 Run SQL scripts in order: 00_create_schemas_and_tables.sql → 01_mart_views.sql.
 
-Activate virtual environment and install dependencies:
+8. Activate virtual environment and install dependencies:
 
 python -m venv .venv
 .venv\Scripts\activate       # Windows
 pip install -r requirements.txt
 
 
-Run ETL scripts:
+9. Run ETL scripts:
 
 
 python -m etl.fetch_customers
@@ -124,5 +124,6 @@ python -m etl/load_orders.py
 Start FastAPI server:
 
 uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
+
 
 Test API endpoints or run api_test_client.py.
